@@ -1,5 +1,5 @@
-# OpenDataPortal
-Use of public data to understand pedestrian access issues
+# OpenSidewalksDashboard Project
+This is a group project I'm working on in the University of Washington Computer Science and Engineering department in Winter 2018. The dashboard uses data from the Seattle government to analyze the sidewalk issues around Seattle. 
 
 # Setup
 - Download and install Node.js
