@@ -1,10 +1,11 @@
 import React from "react";
+import { apiKey } from "./ApiKey";
 
 export default class LandingPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            soda_api_key: "LGR70k7tHk8BqntKzzDsELIOs"
+            soda_api_key: apiKey(),
         }
     }
 
