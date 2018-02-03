@@ -19,6 +19,8 @@ from shapely.geometry import Polygon
 import geopandas as gpd
 
 if __name__ == '__main__':
+
+    # load data
     print('Please wait for the program to load in sidewalk data')
     print()
     try:
@@ -26,14 +28,19 @@ if __name__ == '__main__':
     except:
         sys.exit('Cannot locate the shapefiles. Make sure you have 5 of them in the same folder. See info on top.')
 
+    # allow user to request for ID's over and over again
     while True:
         print('Please enter coordinates in the following format: long lat radius(in km) sidewalk_decription(yes/no)')
         print('                                             i.e. -122.333896 47.607177 0.1 yes')
         user_input = input()
+
+        # use regex to make sure that the input format is correct
         if not re.match(r'-?[0-9]*.[0-9]* -?[0-9]*.[0-9]* ([0-9]*.)?[0-9]* (yes|no)', user_input):
             print('please check your input format')
             print()
         else:
+
+            # record down what user entered
             user_input_list = user_input.split(" ")
             point_coord = [float(user_input_list[0]), float(user_input_list[1])]
             radius = float(user_input_list[2])
@@ -42,19 +49,23 @@ if __name__ == '__main__':
             else:
                 sidewalk_info = False
 
+            # calculate the 8 points around this center point
             sqrt2 = math.sqrt(2)
             conversion_coord = [[1, 0], [1 / sqrt2, -1 / sqrt2], [0, -1], [-1 / sqrt2, -1 / sqrt2], [-1, 0],
                                 [-1 / sqrt2, 1 / sqrt2], [0, 1], [1 / sqrt2, 1 / sqrt2]]
 
+            # creates a list to store the coordinates of polygon of this point with the radius given
             polygon_list = []
-
             for i in range(0, len(conversion_coord)):
                 long = point_coord[0] + conversion_coord[i][0] * radius * 180 / (math.pi * 6367 * math.cos(point_coord[1]))
                 lat = point_coord[1] + conversion_coord[i][1] * radius * 180 / (math.pi * 6367)
                 polygon_list.append([long, lat])
 
+            # creates the polygon
             point = Polygon(polygon_list)
 
+            # for each of the sidewalk segments, if it intersects with the polygon point, it matches what we are
+            # looking for, so print them out (and with a location description if the user wants that too)
             for i in range(0, all_data.UNITID.count()):
                 if all_data.geometry[i] is not None:
                     if point.intersects(all_data.geometry[i]):
