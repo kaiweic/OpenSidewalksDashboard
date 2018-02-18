@@ -8,12 +8,12 @@ import sys
 # connect to localhost MySQL server
 db = pymysql.connect(host='localhost', user='kevin', passwd='kevin', db='sidewalk_data', autocommit=True)
 cursor = db.cursor()
-cursor.execute("DROP TABLE IF EXISTS crime")
+#cursor.execute("DROP TABLE IF EXISTS crime")
 sql_command = '''
     CREATE TABLE crime (id INT PRIMARY KEY NOT NULL, type CHAR(30) NOT NULL, year INT NOT NULL, date CHAR(11) NOT NULL,
                         time CHAR(8) NOT NULL, hour INT NOT NULL, location CHAR(60) NOT NULL, sdw_id CHAR(10) NOT NULL);
 '''
-cursor.execute(sql_command)
+#cursor.execute(sql_command)
 
 # load sidewalk id dataset
 try:
@@ -27,7 +27,7 @@ except:
     sys.exit('Cannot locate the json files that contains info to be matched to ID\'s')
 
 # for each entry in import_data
-for i in range(0, len(imported_data['data'])):
+for i in range(284, len(imported_data['data'])):
     # print('id:', (i + 1))
     '''
     print('type:', imported_data['data'][i][14])
@@ -70,13 +70,14 @@ for i in range(0, len(imported_data['data'])):
         # counting the number of incidents within a given region)
         if result:
             break
-    sql_command = (
-                  'INSERT INTO crime (id, type, year, date, time, hour, location, sdw_id) ' +
-                  'VALUES (' + str(i + 1) + ', \'' + imported_data['data'][i][14] + '\', ' + imported_data['data'][i][15][:4] +
-                  ', \'' + imported_data['data'][i][15][:10] + '\', \'' + imported_data['data'][i][15][11:] + '\', ' +
-                  str(int(imported_data['data'][i][15][11:13])) + ', \'' + imported_data['data'][i][16] + '\', \'' + result[0] + '\');'
-                  )
-    print(sql_command)
-    cursor.execute(sql_command)
+    if result:
+        sql_command = (
+                      'INSERT INTO crime (id, type, year, date, time, hour, location, sdw_id) ' +
+                      'VALUES (' + str(i + 1) + ', \'' + imported_data['data'][i][14] + '\', ' + imported_data['data'][i][15][:4] +
+                      ', \'' + imported_data['data'][i][15][:10] + '\', \'' + imported_data['data'][i][15][11:] + '\', ' +
+                      str(int(imported_data['data'][i][15][11:13])) + ', \'' + imported_data['data'][i][16] + '\', \'' + result[0] + '\');'
+                      )
+        print(sql_command)
+        cursor.execute(sql_command)
 cursor.close()
 db.close()
