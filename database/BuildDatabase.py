@@ -27,7 +27,7 @@ except:
     sys.exit('Cannot locate the json files that contains info to be matched to ID\'s')
 
 # for each entry in import_data
-for i in range(284, len(imported_data['data'])):
+for i in range(0, len(imported_data['data'])):
     # print('id:', (i + 1))
     '''
     print('type:', imported_data['data'][i][14])
