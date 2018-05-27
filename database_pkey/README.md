@@ -1,5 +1,7 @@
 ## Code for creating our geojson file
 
+### All code and data can be found at this [link](). The geojson we produced is called [sidewalks_data.geojson]().
+
 AddQualityIndex.py: Adds the sidewalk quality index to SQL database based on the sidewalk observations.
 
 AddSafetyIndex.py: Adds the safety index to SQL database based on the 911 reports.
@@ -17,5 +19,3 @@ InsertPkeyToDB.py: Inserts the pkey and geometry (in shape) of each sidewalk seg
 InsertTreeDataIntoDB.py: Inserts tree info into SQL database.
 
 SqlToGeojson.py: Extracts data from SQL database and store them into GeoJson format. Each entry is a sidewalk segment with all the properties associated with it.
-
-### All code and data can be found at this [link](). The geojson we produced is called sidewalks_data.geojson.
