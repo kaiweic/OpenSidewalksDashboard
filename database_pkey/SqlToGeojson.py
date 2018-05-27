@@ -13,7 +13,7 @@ The information contained for each sidewalk includes:
     - condition reports associated with each sidewalk segment
     - bus stop information for each sidewalk segment
 
-The geojson now looks like:
+The geojson now looks like the following (with ALL_CAPS being the actual data):
 {
     'type': 'FeatureCollection',
     'features:': [
