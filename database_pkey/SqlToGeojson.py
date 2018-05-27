@@ -10,10 +10,33 @@ The information contained for each sidewalk includes:
     - incline of sidewalk
     - tree data associated with each sidewalk segment
     - condition index (calculated from issues of sidewalks)
-    - consition reports associated with each sidewalk segment
+    - condition reports associated with each sidewalk segment
     - bus stop information for each sidewalk segment
-'''
 
+The geojson now looks like:
+{
+    'type': 'FeatureCollection',
+    'features:': [
+        {
+            'pkey': PKEY,
+            'geometry': GEOMETRY_IN_LINESTRING,
+            'properties': {
+                'safety_index': SAFETY_INDEX,
+                '911_reports': [{911_REPORT_0}, {911_REPORT_1}, ...],
+                'incline': INCLINE,
+                'trees': [{TREE_INFO_0}, {TREE_INFO_1}, ...],
+                'condition_index': CONDITION_INDEX,
+                'condition_reports': [{SDW_ISSUE_0}, {SDW_ISSUE_1}, ...],
+                'bus_stops': [{BUS_STOP_0}, {BUS_STOP_1}, ...]
+            }
+            'type': 'Feature',
+        },
+        {
+            ANOTHER_SIDEWALK_SEGMENT
+        }
+    ]
+}
+'''
 
 import json
 import pymysql
