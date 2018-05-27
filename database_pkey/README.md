@@ -1,6 +1,6 @@
 ## Code for creating our geojson file
 
-### Due to upload restrictions from GitHub, all code and data can be found at this [link](). The geojson we produced is called [sidewalks_data.geojson](./sidewalks_data.geojson).
+### Due to upload restrictions from GitHub, all code and raw data used can be found at this [link](https://drive.google.com/drive/folders/1dT16a_EWqa9_yosBBcE8TBZXFGVBXt-E?usp=sharing). The geojson we produced is called [sidewalks_data.geojson](./sidewalks_data.geojson).
 
 AddQualityIndex.py: Adds the sidewalk quality index to SQL database based on the sidewalk observations.
 
