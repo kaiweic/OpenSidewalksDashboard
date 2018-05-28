@@ -21,3 +21,7 @@ InsertPkeyToDB.py: Inserts the pkey and geometry (in shape) of each sidewalk seg
 InsertTreeDataIntoDB.py: Inserts tree info into SQL database.
 
 SqlToGeojson.py: Extracts data from SQL database and store them into GeoJson format. Each entry is a sidewalk segment with all the properties associated with it.
+
+#### Geojson Format:
+
+![alt text](./geojson_format.PNG)
